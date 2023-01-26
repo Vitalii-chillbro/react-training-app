@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./index.css"
+
+import Firstday from "./components/Firstday";
+import SecondDay from "./components/SecondDay";
+import ThirdDay from "./components/ThirdDay";
+import { useState } from "react";
+
 
 function App() {
+  const items = {
+    dayO: "day1",
+    dayS: "day2",
+    dayT: "day3"
+  }
+  
+  const [selectedItem, setSelectedItem] = useState(items.dayO)
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="select_container">
+        <div className="title">Виберіть день</div>
+        <button onClick={() => setSelectedItem(items.dayO)}>Перший</button>
+        <button onClick={() => setSelectedItem(items.dayS)}>Другий</button>
+        <button onClick={() => setSelectedItem(items.dayT)}>Третій</button> 
+      </div>
+      <div>
+        {selectedItem === items.dayO && <Firstday />}
+        {selectedItem === items.dayS && <SecondDay />}
+        {selectedItem === items.dayT && <ThirdDay />}
+      </div>
     </div>
   );
 }
